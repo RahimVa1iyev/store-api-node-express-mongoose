@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
+const productsRoute = require('./routes/products')
 
 const connectDB = require('./db/connect')
 
@@ -15,12 +16,13 @@ app.get('/', (req,res) =>{
     res.send('<h1>Store Api</h1><a href="/api/v1.products" >products</a>')
 })
 
+app.use('/api/v1/products',productsRoute)
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
 
 
-const port = process.nextTick.PORT || 3000
+const port =  3000
 
 const start = async () =>{
   try {
