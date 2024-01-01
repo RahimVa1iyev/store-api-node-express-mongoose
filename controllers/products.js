@@ -10,7 +10,7 @@ const getAllProducts = async (req,res) =>{
     const {feature , name } = req.query
     const queryObject = {}
     if(feature)   queryObject.feature = feature === 'true' ? true : false
-    if(name)   queryObject.name = name
+    if(name)   queryObject.name = {$regex : name , $options :'i'}
 
     const products = await Product.find(queryObject)
 
